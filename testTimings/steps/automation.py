@@ -29,6 +29,7 @@ def compare_get_request(context, end_point):
 def compare_get_request(context, end_point):
     context.tester.compare_post_response_sign_up(end_point)
 
+
 @given('Test "{end_point}" post-request different data')
 def compare_get_request(context, end_point):
     context.tester.compare_post_response_different_data(end_point)
