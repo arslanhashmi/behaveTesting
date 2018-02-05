@@ -536,12 +536,12 @@ def after_all(context):
     pass
 
 
-def random_email(n=10):
+def random_email(string_size=10):
     """
     Used to generate random string on n size
     :param
     n: size of random string
     """
     return (''.join([random.choice(string.ascii_letters + string.digits) for _ in
-                     range(n)]))
+                     range(string_size)]))
 
