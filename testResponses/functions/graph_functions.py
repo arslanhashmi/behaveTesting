@@ -12,7 +12,6 @@ def make_box_plot(name, php_data, python_data, title='Bar plot ', x_label='1: Ph
     :param title: Title for plot
     :param x_label: label of x axis
     :param y_label: label of y axis
-    :return:
     """
 
     title = "{title}{name} end point for {hits} hits".format(
@@ -43,7 +42,6 @@ def make_subplot(name, php_data, python_data, title='Plot for ', x_label='Hits',
     :param title: Title for plot
     :param x_label: label of x axis
     :param y_label: label of y axis
-    :return:
     """
     #For php
     fig, ax = plt.subplots(nrows=1, ncols=1)

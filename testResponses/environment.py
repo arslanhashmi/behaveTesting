@@ -108,7 +108,6 @@ class TestAPI(object):
         comparing get responses
         :param end_point: end point name
         :param elastic_search: if true then change python link to elastic search
-        :return:
         """
 
         file_pointer = open('logs/{name}_{date}.txt'.format(
@@ -164,8 +163,9 @@ class TestAPI(object):
     def compare_get_response_with_missing_arguments(self, end_point):
         """
         Used when checking different scenarios with skipping arguments.
-        :param end_point: name of the end point
-        :return:
+        :param
+        end_point: name of the end point
+
         """
 
         file_pointer = open('logs/{name}_{date}.txt'.format(
@@ -247,8 +247,9 @@ class TestAPI(object):
     def compare_get_response_different_urls(self, end_point):
             """
             called when python and php has different urls for same end points
-            :param end_point: name of end point
-            :return:
+            :param
+            end_point: name of end point
+
             """
             file_pointer = open('logs/{name}_{date}.txt'.format(
                     date=self.date,
@@ -307,8 +308,9 @@ class TestAPI(object):
     def compare_post_response(self, end_point):
         """
         comparing post requests
-        :param end_point: name of end point
-        :return:
+        :param
+        end_point: name of end point
+
         """
 
         file_pointer = open('logs/{name}_{date}.txt'.format(
@@ -370,9 +372,10 @@ class TestAPI(object):
 
     def compare_post_response_sign_up(self, end_point):
         """
+        used just for sign up new user end point as of having a "random email every time" scenario
+        :param
+        end_point: name of end point
 
-        :param end_point: name of end point
-        :return:
         """
         file_pointer = open('logs/{name}_{date}.txt'.format(
                 date=self.date,
@@ -441,8 +444,9 @@ class TestAPI(object):
 
             """
             When the post data for both python and php is change this function is used
-            :param end_point: name of end point
-            :return:
+            :param
+            end_point: name of end point
+
             """
             file_pointer = open('logs/{name}_{date}.txt'.format(
                     date=self.date,
@@ -506,8 +510,9 @@ class TestAPI(object):
 def before_all(context):
     """
     called in the start when ever tests are run
-    :param context: context.tester will be used in steps
-    :return:
+    :param
+    context: context.tester will be used in steps
+
     """
     context.tester = TestAPI()
 
@@ -515,8 +520,8 @@ def before_all(context):
 def after_all(context):
     """
     called at the end of tests execution
-    :param context:
-    :return:
+    :param
+    context: can be used to close some connections if required
     """
     pass
 
@@ -524,6 +529,8 @@ def after_all(context):
 def random_email(n=10):
     """
     Used to generate random string on n size
+    :param
+    n: size of random string
     """
     return (''.join([random.choice(string.ascii_letters + string.digits) for _ in
                      range(n)]))
