@@ -39,8 +39,3 @@ def compare_get_request(context, end_point):
 def compare_get_request(context, end_point):
     context.tester.compare_post_response_different_data(end_point)
 
-
-
-
-
-

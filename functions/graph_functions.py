@@ -79,3 +79,4 @@ def make_subplot(name, php_data, python_data, title='Plot for ', x_label='Hits',
         )
     )
     plt.close(fig)
+

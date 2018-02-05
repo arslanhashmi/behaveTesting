@@ -95,5 +95,3 @@ Feature: Testing API responses
     And Test "user_profile" get-request
     And Test "user" get-request
 
-
-

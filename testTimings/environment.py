@@ -505,3 +505,4 @@ def random_email(string_size=10):
     return (''.join([random.choice(string.ascii_letters + string.digits) for _ in
                      range(string_size)]))
 
+
