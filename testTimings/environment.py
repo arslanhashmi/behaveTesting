@@ -5,7 +5,6 @@ import random
 import string
 import timeit
 from datetime import datetime
-import requests
 from fake_useragent import UserAgent
 from requests.auth import HTTPBasicAuth
 from functions.global_variables import *
