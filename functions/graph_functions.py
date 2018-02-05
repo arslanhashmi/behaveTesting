@@ -55,7 +55,11 @@ def make_subplot(name, php_data, python_data, title='Plot for ', x_label='Hits',
     plt.ylabel(y_label)
     plt.grid(True)
     ax.plot(range(1, API_HITS + 1), php_data)
-    fig.savefig("{folder}/{name}_timings_php.png".format(folder=PATH_TO_SAVE_FIGURES, name=name))
+    fig.savefig("{folder}/{name}_timings_php.png".format(
+            folder=PATH_TO_SAVE_FIGURES,
+            name=name
+        )
+    )
     plt.close(fig)
 
     #For python
@@ -69,5 +73,9 @@ def make_subplot(name, php_data, python_data, title='Plot for ', x_label='Hits',
     plt.ylabel(y_label)
     plt.grid(True)
     ax.plot(range(1, API_HITS + 1), python_data)
-    fig.savefig("{folder}/{name}_timings_python.png".format(folder=PATH_TO_SAVE_FIGURES, name=name))
+    fig.savefig("{folder}/{name}_timings_python.png".format(
+            folder=PATH_TO_SAVE_FIGURES,
+            name=name
+        )
+    )
     plt.close(fig)
