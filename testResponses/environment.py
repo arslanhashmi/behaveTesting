@@ -113,7 +113,8 @@ class TestAPI(object):
         file_pointer = open('logs/{name}_{date}.txt'.format(
                 date=self.date,
                 name=end_point
-            ), 'w'
+            ),
+            'w'
         )
 
         file_pointer.write('Going to test {name} with correct date at {time}\n'.format(
@@ -124,13 +125,17 @@ class TestAPI(object):
         response_php = requests.get('{link}{end_point}'.format(
                 link=PHP_LINK,
                 end_point=self.END_POINTS[end_point]
-            ), auth=self.http_auth, headers=self.header
+            ),
+            auth=self.http_auth,
+            headers=self.header
         )
 
         response_python = requests.get('{link}{end_point}'.format(
                 link=PYTHON_LINK if not elastic_search else PYTHON_LINK_ELASTIC_SEARCH,
                 end_point=self.END_POINTS[end_point]
-            ), auth=self.http_auth, headers=self.header
+            ),
+            auth=self.http_auth,
+            headers=self.header
         )
 
         file_pointer.write(
@@ -171,7 +176,8 @@ class TestAPI(object):
         file_pointer = open('logs/{name}_{date}.txt'.format(
                 date=self.date,
                 name=end_point
-            ), 'w'
+            ),
+            'w'
         )
 
         for parameter in self.KEYS[end_point]:
@@ -254,7 +260,8 @@ class TestAPI(object):
             file_pointer = open('logs/{name}_{date}.txt'.format(
                     date=self.date,
                     name=end_point
-                ), 'w'
+                ),
+                'w'
             )
 
             file_pointer.write('Going to test {name} with correct date at {time}\n'.format(
@@ -316,7 +323,8 @@ class TestAPI(object):
         file_pointer = open('logs/{name}_{date}.txt'.format(
                 date=self.date,
                 name=end_point
-            ), 'w'
+            ),
+            'w'
         )
 
         file_pointer.write('Going to test {name} with correct date at {time}\n'.format(
@@ -380,7 +388,8 @@ class TestAPI(object):
         file_pointer = open('logs/{name}_{date}.txt'.format(
                 date=self.date,
                 name=end_point
-            ), 'w'
+            ),
+            'w'
         )
 
         file_pointer.write('Going to test {name} with correct date at {time}\n'.format(
@@ -451,7 +460,8 @@ class TestAPI(object):
             file_pointer = open('logs/{name}_{date}.txt'.format(
                     date=self.date,
                     name=end_point
-                ), 'w'
+                ),
+                'w'
             )
 
             file_pointer.write('Going to test {name} with correct date at {time}\n'.format(

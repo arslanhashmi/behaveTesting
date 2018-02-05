@@ -114,7 +114,8 @@ class TestAPI(object):
         file_pointer = open('logs/{name}_{date}.txt'.format(
                 date=self.date,
                 name=end_point
-            ), 'w'
+            ),
+            'w'
         )
 
         file_pointer.write('Going to test {name} response timings with correct date at {time}\n'.format(
@@ -159,7 +160,8 @@ class TestAPI(object):
                 API_HITS=API_HITS,
                 average_time=format(
                     sum(times_python) / len(times_python),
-                    '.4f')
+                    '.4f'
+                )
             )
         )
 
@@ -184,7 +186,8 @@ class TestAPI(object):
             file_pointer = open('logs/{name}_{date}.txt'.format(
                     date=self.date,
                     name=end_point
-                ), 'w'
+                ),
+                'w'
             )
 
             file_pointer.write('Going to test {name} response timings with correct date at {time}\n'.format(
@@ -229,7 +232,8 @@ class TestAPI(object):
                     API_HITS=API_HITS,
                     average_time=format(
                         sum(times_python) / len(times_python),
-                        '.4f')
+                        '.4f'
+                    )
                 )
             )
 
@@ -253,7 +257,8 @@ class TestAPI(object):
         file_pointer = open('logs/{name}_{date}.txt'.format(
                 date=self.date,
                 name=end_point
-            ), 'w'
+            ),
+            'w'
         )
 
         file_pointer.write('Going to test {name} response timings with correct date at {time}\n'.format(
@@ -302,7 +307,8 @@ class TestAPI(object):
                 API_HITS=API_HITS,
                 average_time=format(
                     sum(times_python) / len(times_python),
-                    '.4f')
+                    '.4f'
+                )
             )
         )
 
@@ -326,7 +332,8 @@ class TestAPI(object):
         file_pointer = open('logs/{name}_{date}.txt'.format(
                 date=self.date,
                 name=end_point
-            ), 'w'
+            ),
+            'w'
         )
 
         file_pointer.write('Going to test {name} response timings with correct date at {time}\n'.format(
@@ -380,7 +387,8 @@ class TestAPI(object):
                 API_HITS=API_HITS,
                 average_time=format(
                     sum(times_python) / len(times_python),
-                    '.4f')
+                    '.4f'
+                )
             )
         )
 
@@ -405,7 +413,8 @@ class TestAPI(object):
             file_pointer = open('logs/{name}_{date}.txt'.format(
                     date=self.date,
                     name=end_point
-                ), 'w'
+                ),
+                'w'
             )
 
             file_pointer.write('Going to test {name} response timings with correct date at {time}\n'.format(
@@ -454,7 +463,8 @@ class TestAPI(object):
                     API_HITS=API_HITS,
                     average_time=format(
                         sum(times_python) / len(times_python),
-                        '.4f')
+                        '.4f'
+                    )
                 )
             )
 
