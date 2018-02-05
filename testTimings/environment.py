@@ -12,6 +12,7 @@ from functions.compare_json import *
 from functions.global_variables import *
 from functions.graph_functions import *
 
+
 class TestAPI(object):
 
     END_POINTS = {
@@ -466,6 +467,7 @@ class TestAPI(object):
                 )
             )
             file_pointer.close()
+
 
 def before_all(context):
     """
