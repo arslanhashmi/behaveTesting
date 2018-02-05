@@ -8,12 +8,11 @@ from datetime import datetime
 import requests
 from fake_useragent import UserAgent
 from requests.auth import HTTPBasicAuth
-from functions.compare_json import *
 from functions.global_variables import *
 from functions.graph_functions import *
 
 
-class TestAPI(object):
+class TestAPITimings(object):
 
     END_POINTS = {
         'birthday_deeplink': BIRTHDAY_DEEPLINK,
@@ -486,7 +485,7 @@ def before_all(context):
     context: context.tester will be used in steps
 
     """
-    context.tester = TestAPI()
+    context.tester = TestAPITimings()
 
 
 def after_all(context):
