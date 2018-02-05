@@ -6,9 +6,9 @@ import string
 from datetime import datetime
 import requests
 from fake_useragent import UserAgent
-from functions.compare_json import *
 from requests.auth import HTTPBasicAuth
-from testResponses.functions.global_variables import *
+from functions.compare_json import *
+from functions.global_variables import *
 
 
 class TestAPI(object):

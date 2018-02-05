@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-
 from functions.global_variables import PATH_TO_SAVE_FIGURES, API_HITS
 
 
