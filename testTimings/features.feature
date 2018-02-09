@@ -59,7 +59,7 @@ Feature: Testing API responses
     Given Test "offers" get-request
 
   Scenario: Compare outlets
-    Given Test "outlets" get-request with missing arguments
+    Given Test "outlets" get-request
     And Test "outlet_names_without_offer_id" get-request
 
   Scenario: Compare outlets without id
@@ -94,6 +94,4 @@ Feature: Testing API responses
     Given Test "user_products" get-request
     And Test "user_profile" get-request
     And Test "user" get-request
-
-
 

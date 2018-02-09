@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-
+"""
+File comparing json responses
+"""
 
 def compare_lists(list_1, list_2, info, file_pointer):
     """
@@ -14,10 +16,16 @@ def compare_lists(list_1, list_2, info, file_pointer):
     difference2 = set(list_2) - set(list_1)
     if difference1:
         file_pointer.write('{difference} {meta} (Missing in Python end point)\n'.format(
-            difference=difference1, meta=info))
+                difference=difference1,
+                meta=info
+            )
+        )
     if difference2:
         file_pointer.write('{difference} {meta} (Missing in PHP end point)\n'.format(
-            difference=difference2, meta=info))
+                difference=difference2,
+                meta=info
+        )
+        )
     return True if difference1 or difference2 else False
 
 
@@ -34,7 +42,10 @@ def check_and_compare_lists(list1, list2, key, file_pointer):
         if len(list1) == 0 and len(list2) == 0:
             return
     except Exception as exception:
-        file_pointer.write('An expception occurred {e}\n'.format(e=exception))
+        file_pointer.write('An expception occurred {e}\n'.format(
+                e=exception
+            )
+        )
         return
     if key == 'outlets':
         id1 = []
@@ -71,18 +82,27 @@ def check_and_compare_lists(list1, list2, key, file_pointer):
                     keys = 'tile_id' if 'tile_id' in list1[0] else 'identifier'
                 if key == 'hotels': # only for home call
                     file_pointer.write('** Going to skip sorting for {key} ** '
-                                       'as no available sorting option is present\n'.format(key=key))
+                                       'as no available sorting option is present\n'.format(
+                            key=key
+                        )
+                    )
                     do_not_sort = True
                 if not do_not_sort and keys:
                     file_pointer.write(
                         '-- {key} is going to be sorted on the basic of {keys} --\n'.format(
-                            key=key, keys=keys))
+                                key=key,
+                                keys=keys
+                        )
+                    )
                     from operator import itemgetter
                     list1 = sorted(list1, key=itemgetter(keys))
                     list2 = sorted(list2, key=itemgetter(keys))
             except:
                 file_pointer.write('** Going to skip sorting for {key} ** '
-                                   'as no available sorting option is present\n'.format(key=key))
+                                   'as no available sorting option is present\n'.format(
+                        key=key
+                    )
+                )
                 return False
 
     if not monitoring_list1 and not monitoring_list2 and len(list1) == len(list2):
@@ -96,14 +116,23 @@ def check_and_compare_lists(list1, list2, key, file_pointer):
                         pass
             else:
                 file_pointer.write('Type of {val1} in PHP does not match with {val2} in python\n'.format(
-                    val1=val1, val2=val2))
+                        val1=val1,
+                        val2=val2
+                    )
+                )
     elif len(list1) != len(list2):
         file_pointer.write(
             'Length of {key} do not match so can not be checked length of both lists are {php_length} in PHP'
             ' and {python_length} in python\n'.format(
-            key=key, php_length=len(list1), python_length=len(list2)))
+                key=key,
+                php_length=len(list1),
+                python_length=len(list2)
+            )
+        )
     else:
-        compare_lists(list1, list2, 'element not present in comparision of list for attribute:' + key, file_pointer)
+        compare_lists(list1, list2, 'element not present in comparision of list for attribute:{key}'.format(
+            key=key
+        ), file_pointer)
 
 
 def compare_data(dict1, dict2, file_pointer):
@@ -124,23 +153,40 @@ def compare_data(dict1, dict2, file_pointer):
             if type(value) != type(dict2[key]):
                 file_pointer.write('Value types do not match for attribute: {key},'
                                    ' clash is between {type1} in PHP and {type2} in Python)\n'.format(
-                    key=key, type1=type(value), type2=type(dict2[key])))
+                        key=key,
+                        type1=type(value),
+                        type2=type(dict2[key])
+                    )
+                )
         except Exception as exception:
-            file_pointer.write('An expception occured {e}\n'.format(e=exception))
+            file_pointer.write('An expception occured {e}\n'.format(
+                    e=exception
+                )
+            )
         if isinstance(value, (int, str, float, bool)):
             try:
                 if value != dict2[key]:
                     correct_status = False
                     file_pointer.write('Value do not match for attribute: {key},'
                                        ' clash is between {value1} in PHP and {value2} in Python\n'.format(
-                        key=key, value1=value, value2=dict2[key]))
+                            key=key,
+                            value1=value,
+                            value2=dict2[key]
+                        )
+                    )
             except Exception as exception:
-                file_pointer.write('An expception occurred {e}\n'.format(e=exception))
+                file_pointer.write('An expception occurred {e}\n'.format(
+                        e=exception
+                    )
+                )
         elif isinstance(value, (list, set)):
             try:
                 check_and_compare_lists(value, dict2[key], key, file_pointer)
             except Exception as exception:
-                file_pointer.write('An expception occurred {e}\n'.format(e=exception))
+                file_pointer.write('An expception occurred {e}\n'.format(
+                        e=exception
+                    )
+                )
         elif isinstance(value, dict):
             correct_result = compare_data(value, dict2[key], file_pointer)
             if not correct_result:

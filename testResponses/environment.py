@@ -1,14 +1,14 @@
 """
-Environment file having testing
+Environment file having testing functions in TestAPI class
 """
 import random
 import string
 from datetime import datetime
 import requests
-from requests.auth import HTTPBasicAuth
 from fake_useragent import UserAgent
-from functions.global_variables import *
+from requests.auth import HTTPBasicAuth
 from functions.compare_json import *
+from functions.global_variables import *
 
 
 class TestAPI(object):
@@ -93,6 +93,9 @@ class TestAPI(object):
     }
 
     def __init__(self):
+        """
+        initializing variables to be used is every call
+        """
         self.user_agent = UserAgent()
         self.header = {'user-agent': self.user_agent.chrome}
         self.http_auth = HTTPBasicAuth('prototype', 'prototype')
@@ -101,11 +104,17 @@ class TestAPI(object):
         ).split(' ')[0] # Setting current date
 
     def compare_get_response(self, end_point, elastic_search=False):
+        """
+        comparing get responses
+        :param end_point: end point name
+        :param elastic_search: if true then change python link to elastic search
+        """
 
         file_pointer = open('logs/{name}_{date}.txt'.format(
                 date=self.date,
                 name=end_point
-            ), 'w'
+            ),
+            'w'
         )
 
         file_pointer.write('Going to test {name} with correct date at {time}\n'.format(
@@ -116,13 +125,17 @@ class TestAPI(object):
         response_php = requests.get('{link}{end_point}'.format(
                 link=PHP_LINK,
                 end_point=self.END_POINTS[end_point]
-            ), auth=self.http_auth, headers=self.header
+            ),
+            auth=self.http_auth,
+            headers=self.header
         )
 
         response_python = requests.get('{link}{end_point}'.format(
                 link=PYTHON_LINK if not elastic_search else PYTHON_LINK_ELASTIC_SEARCH,
                 end_point=self.END_POINTS[end_point]
-            ), auth=self.http_auth, headers=self.header
+            ),
+            auth=self.http_auth,
+            headers=self.header
         )
 
         file_pointer.write(
@@ -152,12 +165,19 @@ class TestAPI(object):
             )
             file_pointer.close()
 
-    def compare_get_response_with_missing_arguments(self, end_point, elastic_search=False):
+    def compare_get_response_with_missing_arguments(self, end_point):
+        """
+        Used when checking different scenarios with skipping arguments.
+        :param
+        end_point: name of the end point
+
+        """
 
         file_pointer = open('logs/{name}_{date}.txt'.format(
                 date=self.date,
                 name=end_point
-            ), 'w'
+            ),
+            'w'
         )
 
         for parameter in self.KEYS[end_point]:
@@ -195,7 +215,7 @@ class TestAPI(object):
             )
 
             response_python = requests.get('{link}{end_point}'.format(
-                    link=PYTHON_LINK if not elastic_search else PYTHON_LINK_ELASTIC_SEARCH,
+                    link=PYTHON_LINK,
                     end_point=updated_link
                 ),
                 auth=self.http_auth,
@@ -231,11 +251,17 @@ class TestAPI(object):
         file_pointer.close()
 
     def compare_get_response_different_urls(self, end_point):
+            """
+            called when python and php has different urls for same end points
+            :param
+            end_point: name of end point
 
+            """
             file_pointer = open('logs/{name}_{date}.txt'.format(
                     date=self.date,
                     name=end_point
-                ), 'w'
+                ),
+                'w'
             )
 
             file_pointer.write('Going to test {name} with correct date at {time}\n'.format(
@@ -287,11 +313,18 @@ class TestAPI(object):
                 file_pointer.close()
 
     def compare_post_response(self, end_point):
+        """
+        comparing post requests
+        :param
+        end_point: name of end point
+
+        """
 
         file_pointer = open('logs/{name}_{date}.txt'.format(
                 date=self.date,
                 name=end_point
-            ), 'w'
+            ),
+            'w'
         )
 
         file_pointer.write('Going to test {name} with correct date at {time}\n'.format(
@@ -346,11 +379,17 @@ class TestAPI(object):
             file_pointer.close()
 
     def compare_post_response_sign_up(self, end_point):
+        """
+        used just for sign up new user end point as of having a "random email every time" scenario
+        :param
+        end_point: name of end point
 
+        """
         file_pointer = open('logs/{name}_{date}.txt'.format(
                 date=self.date,
                 name=end_point
-            ), 'w'
+            ),
+            'w'
         )
 
         file_pointer.write('Going to test {name} with correct date at {time}\n'.format(
@@ -412,10 +451,17 @@ class TestAPI(object):
 
     def compare_post_response_different_data(self, end_point):
 
+            """
+            When the post data for both python and php is change this function is used
+            :param
+            end_point: name of end point
+
+            """
             file_pointer = open('logs/{name}_{date}.txt'.format(
                     date=self.date,
                     name=end_point
-                ), 'w'
+                ),
+                'w'
             )
 
             file_pointer.write('Going to test {name} with correct date at {time}\n'.format(
@@ -474,8 +520,9 @@ class TestAPI(object):
 def before_all(context):
     """
     called in the start when ever tests are run
-    :param context: context.tester will be used in steps
-    :return:
+    :param
+    context: context.tester will be used in steps
+
     """
     context.tester = TestAPI()
 
@@ -483,13 +530,18 @@ def before_all(context):
 def after_all(context):
     """
     called at the end of tests execution
-    :param context:
-    :return:
+    :param
+    context: can be used to close some connections if required
     """
     pass
 
 
-def random_email():
+def random_email(string_size=10):
+    """
+    Used to generate random string on n size
+    :param
+    n: size of random string
+    """
     return (''.join([random.choice(string.ascii_letters + string.digits) for _ in
-                     range(10)]))
+                     range(string_size)]))
 
